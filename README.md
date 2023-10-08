@@ -15,6 +15,8 @@ ecosystem.
 
 <!-- markdown-toc end -->
 
+[![asciicast](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR.svg)](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR)
+
 
 ## Available Templates
 

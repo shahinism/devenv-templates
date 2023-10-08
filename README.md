@@ -1,7 +1,7 @@
 # `devenv` Templates
 
 This repository contains a collection of templates for setting up
-basic project configurations using the [`devenv`](devenv.sh) tool
+basic project configurations using the [`devenv`](https://devenv.sh) tool
 based on the Nix ecosystem.
 
 [![asciicast](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR.svg)](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR)

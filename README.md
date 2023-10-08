@@ -75,6 +75,15 @@ To use these templates, follow these steps:
    fi
    ```
 
+## Tasks
+
+- [ ] Add Nodejs template
+- [ ] Add Terraform template
+- [ ] Add Go Template
+- [ ] Add Rust Template
+- [ ] Make it modular to slice and dice and have multi-configuration
+      environments also possible.
+
 ## Contributing
 
 Pull requests are welcome! If you'd like to contribute a new template

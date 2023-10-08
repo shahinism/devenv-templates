@@ -22,6 +22,60 @@ based on the Nix ecosystem.
 
 <!-- markdown-toc end -->
 
+Certainly! Here's a section titled "Why Nix for Development Environments?" that delves into the benefits and rationale behind using Nix:
+
+---
+
+## Why Nix for Development Environments?
+
+Using Nix to manage project-specific development environments has
+brought about numerous benefits and advantages. Here's why I gravitate
+towards Nix:
+
+1. **Reproducibility**: Nix guarantees that the exact same
+   dependencies and environment configurations are used every
+   time. Whether it's being run on my machine, a colleague's machine,
+   or in CI/CD, the environment remains consistent.
+
+2. **Isolation**: Each project managed by Nix has its own isolated
+   environment. This means that changes or installations in one
+   project won't inadvertently affect another. This isolation prevents
+   the classic "it works on my machine" problem.
+
+3. **Atomicity**: Nix operations, like installations or upgrades, are
+   atomic. This means that they either fully succeed or don't make any
+   changes at all, ensuring that there's no in-between broken state.
+
+4. **Versioning**: It's effortless to switch between different
+   versions of tools, libraries, or even the language runtime
+   itself. This flexibility is invaluable, especially when working on
+   multiple projects with different requirements.
+
+5. **Flexibility**: `devenv` and Nix are not limited to one language
+   or an specific environment. This allows to craft unified workflows
+   across projects. Easy onboarding with a single command + consistent
+   developer helpers and dependency manager, without limiting
+   developers to include their favorite tooling.
+
+6. **No Global State**: Unlike other package managers, Nix doesn’t
+   have global state. This means you can have multiple versions of a
+   package, each with their dependencies, without conflicts.
+
+7. **Declarative Configuration**: Using `flake.nix` or similar files,
+   the entire project's dependencies and configurations can be
+   declared in one place. This declarative approach not only ensures
+   clarity but also makes setting up a new machine or onboarding a new
+   developer a breeze.
+
+8. **Cross-Platform Consistency**: Nix works across different Unix
+   systems, ensuring that the environment is consistent whether you're
+   using macOS, Linux, or any other Unix-like system.
+
+By leveraging Nix for development environments, I ensure that each
+project is self-contained, predictable, and free from the common
+pitfalls associated with system-wide package managers or mutable
+environments.
+
 ## Available Templates
 
 Currently, the available templates are:

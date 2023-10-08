@@ -12,12 +12,6 @@
 
   outputs = { self, nixpkgs, devenv, systems, ... } @ inputs:
     let
-      nodejs-packages = p:
-        with p; [
-        vscode-langservers-extracted
-        typescript-language-server
-        yarn
-      ];
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
     {
@@ -25,6 +19,11 @@
         (system:
           let
             pkgs = nixpkgs.legacyPackages.${system};
+            nodejs-packages = with pkgs.nodePackages; [
+              vscode-langservers-extracted
+              typescript-language-server
+              yarn
+            ];
           in
           {
             default = devenv.lib.mkShell {
@@ -38,9 +37,7 @@
 
                   # https://devenv.sh/reference/options/
                   packages = with pkgs;
-                    [
-                      (nodePackages nodejs-packages)
-                    ];
+                    [] ++ nodejs-packages;
 
                   # https://devenv.sh/scripts/
                   scripts.hello.exec = "echo $GREET";
@@ -54,6 +51,10 @@
                     enable = true;
                   };
 
+                  languages.typescript = {
+                    enable = true;
+                  };
+
                   # Make diffs fantastic
                   difftastic.enable = true;
 
@@ -62,6 +63,7 @@
                     nixfmt.enable = true;
                     yamllint.enable = true;
                     editorconfig-checker.enable = true;
+                    prettier.enable = true;
                   };
 
                   # Plugin configuration

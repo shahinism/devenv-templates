@@ -7,6 +7,11 @@
         path = ./python;
         description = "Python development environment";
       };
+
+      javascript = {
+        path = ./javascript;
+        description = "Javascript development environment";
+      };
     };
   };
 }

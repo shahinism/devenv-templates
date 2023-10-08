@@ -4,19 +4,23 @@ This repository contains a collection of templates for setting up
 basic project configurations using the [`devenv`](devenv.sh) tool
 based on the Nix ecosystem.
 
+[![asciicast](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR.svg)](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR)
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
 - [`devenv` Templates](#devenv-templates)
     - [Available Templates](#available-templates)
     - [Design Decisions](#design-decisions)
+    - [Environment Tooling](#environment-tooling)
+        - [Global](#global)
+        - [Python](#python)
+        - [Javascript/Typescript](#javascripttypescript)
     - [Usage](#usage)
+    - [Tasks](#tasks)
     - [Contributing](#contributing)
 
 <!-- markdown-toc end -->
-
-[![asciicast](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR.svg)](https://asciinema.org/a/I6zXgwIEvYndWSK7iJvLNr7RR)
-
 
 ## Available Templates
 

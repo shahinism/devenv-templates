@@ -1,8 +1,8 @@
 # `devenv` Templates
 
 This repository contains a collection of templates for setting up
-basic project configurations using the `devenv` tool based on the Nix
-ecosystem.
+basic project configurations using the [`devenv`](devenv.sh) tool
+based on the Nix ecosystem.
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**

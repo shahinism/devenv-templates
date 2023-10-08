@@ -28,6 +28,7 @@ Currently, the available templates are:
 
 - Python
 - JavaScript/TypeScript
+- Terraform
 
 More templates will be added over time, based on personal
 preferences. However, pull requests are more than welcome if you'd
@@ -117,7 +118,7 @@ To use these templates, follow these steps:
 ## Tasks
 
 - [x] Add Nodejs template
-- [ ] Add Terraform template
+- [x] Add Terraform template
 - [ ] Add Go Template
 - [ ] Add Rust Template
 - [ ] Make it modular to slice and dice and have multi-configuration

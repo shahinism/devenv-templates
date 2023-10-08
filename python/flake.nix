@@ -1,8 +1,13 @@
 {
+  # TODO update me
+  description = "Description for the project";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default";
     devenv.url = "github:cachix/devenv";
+    nix2container.url = "github:nlewo/nix2container";
+    nix2container.inputs.nixpkgs.follows = "nixpkgs";
+    mk-shell-bin.url = "github:rrbutani/nix-mk-shell-bin";
   };
 
   nixConfig = {
@@ -10,80 +15,93 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { self, nixpkgs, devenv, systems, ... } @ inputs:
-    let
-      python-packages = p:
-        with p; [
-          pip
-          python-lsp-server
-          importmagic
-          epc
-          black
-          mypy
-        ];
-      forEachSystem = nixpkgs.lib.genAttrs (import systems);
-    in
-    {
-      devShells = forEachSystem
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          {
-            default = devenv.lib.mkShell {
-              inherit inputs pkgs;
-              modules = [
-                {
-                  # https://devenv.sh/basics/
-                  env = {
-                    GREET = "🛠️ Let's hack 🧑🏻‍💻";
-                  };
+  outputs = inputs@{ flake-parts, nixpkgs, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.devenv.flakeModule
+      ];
+      systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-                  # https://devenv.sh/reference/options/
-                  packages = with pkgs;
-                    [
-                      stdenv.cc.cc.lib # required by Jupyter
-                      (python3.withPackages python-packages)
-                    ];
+      perSystem = { config, self', inputs', pkgs, system, ... }:
+        let
+          python-packages = p:
+            with p; [
+              pip
+              python-lsp-server
+              importmagic
+              epc
+              black
+              mypy
+            ];
+        in {
+        # Per-system attributes can be defined here. The self' and inputs'
+        # module parameters provide easy access to attributes of the same
+        # system.
+        devenv.shells.default = {
+          # TODO update me
+          name = "Name of the project";
 
-                  # https://devenv.sh/scripts/
-                  scripts.hello.exec = "echo $GREET";
+          imports = [
+            # This is just like the imports in devenv.nix.
+            # See https://devenv.sh/guides/using-with-flake-parts/#import-a-devenv-module
+            # ./devenv-foo.nix
+          ];
 
-                  enterShell = ''
-                    hello
-                  '';
+          # https://devenv.sh/reference/options/
+          packages = with pkgs;
+            [
+              stdenv.cc.cc.lib # required by Jupyter
+              (python3.withPackages python-packages)
+            ];
 
-                  # https://devenv.sh/languages/
-                  languages.python = {
-                    enable = true;
-                    poetry = {
-                      enable = true;
-                      activate.enable = true;
-                      install.enable = true;
-                      install.allExtras = true;
-                    };
-                  };
+          # https://devenv.sh/basics/
+          env = {
+            GREET = "🛠️ Let's hack 🧑🏻‍💻";
+          };
 
-                  # Make diffs fantastic
-                  difftastic.enable = true;
+          # https://devenv.sh/scripts/
+          scripts.hello.exec = "echo $GREET";
 
-                  # https://devenv.sh/pre-commit-hooks/
-                  pre-commit.hooks = {
-                    black.enable = true;
-                    nixfmt.enable = true;
-                    yamllint.enable = true;
-                    pyright.enable = true;
-                    editorconfig-checker.enable = true;
-                  };
+          enterShell = ''
+            hello
+          '';
 
-                  # Plugin configuration
-                  pre-commit.settings = {
-                    yamllint.relaxed = true;
-                  };
-
-                }
-              ];
+          # https://devenv.sh/languages/
+          languages.python = {
+            enable = true;
+            poetry = {
+              enable = true;
+              activate.enable = true;
+              install.enable = true;
+              install.allExtras = true;
             };
-          });
+          };
+
+          # Make diffs fantastic
+          difftastic.enable = true;
+
+          # https://devenv.sh/pre-commit-hooks/
+          pre-commit.hooks = {
+            black.enable = true;
+            nixfmt.enable = true;
+            yamllint.enable = true;
+            pyright.enable = true;
+            editorconfig-checker.enable = true;
+          };
+
+          # Plugin configuration
+          pre-commit.settings = {
+            yamllint.relaxed = true;
+          };
+
+        };
+
+      };
+      flake = {
+        # The usual flake attributes can be defined here, including system-
+        # agnostic ones like nixosModule and system-enumerating ones, although
+        # those are more easily expressed in perSystem.
+
+      };
     };
 }

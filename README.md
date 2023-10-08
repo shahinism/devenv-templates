@@ -83,6 +83,7 @@ Currently, the available templates are:
 - Python
 - JavaScript/TypeScript
 - Terraform
+- Go
 
 More templates will be added over time, based on personal
 preferences. However, pull requests are more than welcome if you'd

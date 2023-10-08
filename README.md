@@ -119,8 +119,9 @@ To use these templates, follow these steps:
 
 - [x] Add Nodejs template
 - [x] Add Terraform template
-- [ ] Add Go Template
+- [x] Add Go Template
 - [ ] Add Rust Template
+- [ ] Migrate from Terraform to OpenTofu
 - [ ] Make it modular to slice and dice and have multi-configuration
       environments also possible.
 

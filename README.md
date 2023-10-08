@@ -47,7 +47,7 @@ To use these templates, follow these steps:
 2. Initialize your project:
 
    ```sh
-   nix flake init --template github.com/shahinism/devenv-templates#python
+   nix flake init --template github:shahinism/devenv-templates#python
    ```
 
    Replace `#python` with your desired template.

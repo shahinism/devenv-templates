@@ -84,6 +84,7 @@ Currently, the available templates are:
 - JavaScript/TypeScript
 - Terraform
 - Go
+- Rust
 
 More templates will be added over time, based on personal
 preferences. However, pull requests are more than welcome if you'd
@@ -175,7 +176,7 @@ To use these templates, follow these steps:
 - [x] Add Nodejs template
 - [x] Add Terraform template
 - [x] Add Go Template
-- [ ] Add Rust Template
+- [x] Add Rust Template
 - [ ] Migrate from Terraform to OpenTofu
 - [ ] Make it modular to slice and dice and have multi-configuration
       environments also possible.

@@ -23,6 +23,7 @@ based on the Nix ecosystem.
 Currently, the available templates are:
 
 - Python
+- JavaScript/TypeScript
 
 More templates will be added over time, based on personal
 preferences. However, pull requests are more than welcome if you'd
@@ -38,6 +39,40 @@ like to contribute.
    coding rules to guide developers.
 3. **Consistency**: For low-effort checks to maintain project
    consistency, mainstream linters are run on hooks.
+
+
+## Environment Tooling
+
+Each template environment integrates with a set of tools to streamline
+development and maintain consistency. Here's a breakdown of the tools
+used for the respective environments:
+
+### Global
+
+- **[difftastic](https://difftastic.wilfred.me.uk/)**: A tool that
+  provides a more structured approach to diffing, making it easier to
+  understand changes between files.
+- **[nixfmt](https://github.com/serokell/nixfmt)**: A formatter for
+  Nix code, ensuring that Nix scripts are readable and adhere to a
+  consistent style.
+- **[yamllint](https://www.yamllint.com/)**: This tool is used to lint
+  YAML files. For our environments, we use a simplified configuration.
+- **[editorconfig](https://editorconfig.org/)**: Used to define and
+  maintain consistent coding styles between different editors and
+  IDEs.
+
+### Python
+
+- **[black](https://github.com/psf/black)**: The uncompromising Python
+  code formatter. It ensures that Python code adheres to a consistent
+  style, making it readable and clean.
+
+### Javascript/Typescript
+
+- **[prettier](https://prettier.io/)**: An opinionated code formatter
+  that supports multiple languages, including JavaScript and
+  TypeScript. It ensures that code has a consistent style, improving
+  readability.
 
 ## Usage
 
@@ -77,7 +112,7 @@ To use these templates, follow these steps:
 
 ## Tasks
 
-- [ ] Add Nodejs template
+- [x] Add Nodejs template
 - [ ] Add Terraform template
 - [ ] Add Go Template
 - [ ] Add Rust Template

@@ -22,8 +22,6 @@ based on the Nix ecosystem.
 
 <!-- markdown-toc end -->
 
-Certainly! Here's a section titled "Why Nix for Development Environments?" that delves into the benefits and rationale behind using Nix:
-
 ---
 
 ## Why Nix for Development Environments?

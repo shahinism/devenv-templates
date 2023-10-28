@@ -74,6 +74,8 @@
             yamllint.relaxed = true;
           };
 
+          # https://devenv.sh/integrations/dotenv/
+          dotenv.enable = true;
         };
 
       };

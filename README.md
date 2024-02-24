@@ -161,11 +161,11 @@ To use these templates, follow these steps:
      source_url "https://raw.githubusercontent.com/nix-community/nix-direnv/2.2.1/direnvrc" "sha256-zelF0vLbEl5uaqrfIzbgNzJWGmLzCmYAkInj/LNxvKs="
    fi
 
-   watch_file devenv.nix
-   watch_file devenv.lock
+   watch_file flake.nix
+   watch_file flake.lock
    if ! use flake . --impure
    then
-     echo "devenv could not be built. The devenv environment was not loaded. Make the necessary changes to devenv.nix and hit enter to try again." >&2
+     echo "devenv flake could not be built. The devenv environment was not loaded. Make the necessary changes to flake.nix and hit enter to try again." >&2
    fi
    ```
 

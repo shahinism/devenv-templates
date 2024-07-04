@@ -15,25 +15,35 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ flake-parts, nixpkgs, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {
+    flake-parts,
+    nixpkgs,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devenv.flakeModule
       ];
-      systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }:
-        let
-          python-packages = p:
-            with p; [
-              pip
-              python-lsp-server
-              importmagic
-              epc
-              black
-              mypy
-            ];
-        in {
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: let
+        python-packages = p:
+          with p; [
+            pip
+            python-lsp-server
+            importmagic
+            epc
+            black
+            mypy
+          ];
+      in {
         # Per-system attributes can be defined here. The self' and inputs'
         # module parameters provide easy access to attributes of the same
         # system.
@@ -48,11 +58,10 @@
           ];
 
           # https://devenv.sh/reference/options/
-          packages = with pkgs;
-            [
-              stdenv.cc.cc.lib # required by Jupyter
-              (python3.withPackages python-packages)
-            ];
+          packages = with pkgs; [
+            stdenv.cc.cc.lib # required by Jupyter
+            (python3.withPackages python-packages)
+          ];
 
           # https://devenv.sh/basics/
           env = {
@@ -84,27 +93,22 @@
           pre-commit.hooks = {
             black.enable = true;
             nixfmt.enable = true;
-            yamllint.enable = true;
+            yamllint = {
+              enable = true;
+              settings.preset = "relaxed";
+            };
             pyright.enable = true;
             editorconfig-checker.enable = true;
           };
 
-          # Plugin configuration
-          pre-commit.settings = {
-            yamllint.relaxed = true;
-          };
-
           # https://devenv.sh/integrations/dotenv/
           dotenv.enable = true;
-
         };
-
       };
       flake = {
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
         # those are more easily expressed in perSystem.
-
       };
     };
 }

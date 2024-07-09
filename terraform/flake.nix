@@ -14,14 +14,25 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = inputs@{ flake-parts, nixpkgs, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {
+    flake-parts,
+    nixpkgs,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         inputs.devenv.flakeModule
       ];
-      systems = [ "x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
 
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: {
         # https://github.com/cachix/devenv/issues/521
         _module.args.pkgs = import nixpkgs {
           inherit system;
@@ -40,7 +51,7 @@
           ];
 
           # https://devenv.sh/reference/options/
-          packages = with pkgs; [ ];
+          packages = with pkgs; [];
 
           # https://devenv.sh/basics/
           env = {
@@ -64,26 +75,22 @@
           pre-commit.hooks = {
             shellcheck.enable = true;
             nixfmt.enable = true;
-            yamllint.enable = true;
+            yamllint = {
+              enable = true;
+              settings.preset = "relaxed";
+            };
             terraform-format.enable = true;
             tflint.enable = true;
-          };
-
-          # Plugin configuration
-          pre-commit.settings = {
-            yamllint.relaxed = true;
           };
 
           # https://devenv.sh/integrations/dotenv/
           dotenv.enable = true;
         };
-
       };
       flake = {
         # The usual flake attributes can be defined here, including system-
         # agnostic ones like nixosModule and system-enumerating ones, although
         # those are more easily expressed in perSystem.
-
       };
     };
 }

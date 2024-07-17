@@ -1,3 +1,6 @@
+> **⚠️Important**
+> In favour of [Inception]([url](https://github.com/DataChefHQ/inception/)) this project is considered **deprecated**.
+
 # `devenv` Templates
 
 This repository contains a collection of templates for setting up

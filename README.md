@@ -1,5 +1,5 @@
-> **⚠️Important**
-> In favour of [Inception]([url](https://github.com/DataChefHQ/inception/)) this project is considered **deprecated**.
+# **⚠️Important**
+In favour of **[Inception](https://github.com/DataChefHQ/inception/)** this project is considered **deprecated**.
 
 # `devenv` Templates
 
